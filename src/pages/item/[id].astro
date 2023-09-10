@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import data from "../../data.json";
+import LeftIcon from "../../components/assets/LeftIcon.astro";
+import Whatsapp from "../../components/assets/Whatsapp.astro";
 
 export function getStaticPaths() {
   const paths = data.images.map((image) => ({
@@ -13,16 +15,62 @@ export function getStaticPaths() {
 
 const { id } = Astro.params;
 const { label, url } = data.images.filter((image) => image.id === id)[0];
----
 
-<Layout title={`${id} - ReplyArt`}>
-  <main class="min-h-screen flex items-center">
-    <section class="container mx-auto p-6 sm:px-10">
+const ICONS = [
+  {icon: Whatsapp, link: "https://wa.me/59175666666?text=Estoy%20interesado%20en%20comprar%20esta%20replica:"},
+]
+
+const { url: currentUrl } = Astro.request;
+---
+<Layout title={`${label} - ReplyArt`}>
+  <meta slot="head" name="og:title" content={label} />
+  <header class="flex p-1 md:p-4 w-full items-center">
+    <a
+      href="/"
+      class:list={[
+        "flex items-center justify-center",
+        "text-xl rounded-full py-2 px-4",
+        "h-10 w-10 md:w-fit flex gap-4 z-10",
+        "hover:bg-gray-100 hover:bg-opacity-10",
+        "active:bg-gray-100 active:bg-opacity-20",
+      ]}
+    >
+      &#x2190;
+      <span class="hidden md:block">Inicio</span>
+    </a>
+    <h1 class="flex-grow text-lg md:text-2xl font-semibold text-center capitalize">{label}</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-xl hidden md:block">Consultar:</span>
+      {
+        ICONS.map(({icon: Icon, link}) => (
+          <a
+            href={`${link}%20${currentUrl}`}
+            target="_blank"
+            class:list={[
+              "flex items-center justify-center p-2 rounded-full",
+              "hover:bg-white hover:bg-opacity-10",
+              "active:bg-white active:bg-opacity-20",
+            ]}
+          >
+            <Icon />
+          </a>
+        ))
+      }
+    </div>
+  </header>
+  <main class="flex items-center flex-grow">
+    <section
+      class={[
+        "w-full h-full flex justify-center items-center",
+        "bg-gray-900",
+      ]}
+    >
       <img
         title={label}
         src={url}
         alt={label}
-        class="object-cover rounded-3xl w-full"
+        class="w-full h-full object-contain"
+        transition:name={`image-${id}`}
       />
     </section>
   </main>

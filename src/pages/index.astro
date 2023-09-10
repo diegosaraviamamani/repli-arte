@@ -5,23 +5,27 @@ import data from "../data.json";
 ---
 
 <Layout title="Inicio - ReplyArt">
-	<main class="flex flex-col items-center">
-		<Hero />
-		<section
-			class="z-10 container grid gap-8 grid-cols-[repeat(auto-fill,minmax(320px,1fr))] my-auto p-6 sm:px-10 w-full place-items-center"
-		>
-			{
-				data.images.map(({ id, label, url }) => (
-					<a href={`/item/${id}`} class="h-full">
-						<img
-							title={label}
-							src={url}
-							alt={label}
-							class="object-cover rounded-lg h-full"
-						/>
-					</a>
-				))
-			}
-		</section>
-	</main>
+  <main class="flex flex-col items-center">
+    <Hero />
+    <section
+      class="z-10 container grid gap-8 grid-cols-[repeat(auto-fill,minmax(320px,1fr))] my-auto p-6 sm:px-10 w-full place-items-center"
+    >
+      {
+        data.images.map(({ id, label, url }) => (
+          <a
+            href={`/item/${id}`}
+            class="h-full"
+            transition:name={`image-${id}`}
+          >
+            <img
+              title={label}
+              src={url}
+              alt={label}
+              class="object-cover rounded-lg h-full"
+            />
+          </a>
+        ))
+      }
+    </section>
+  </main>
 </Layout>
