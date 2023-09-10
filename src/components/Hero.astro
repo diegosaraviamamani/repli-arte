@@ -1,0 +1,82 @@
+---
+import Facebook from "./assets/Facebook.astro";
+import GMail from "./assets/GMail.astro";
+import Whatsapp from "./assets/Whatsapp.astro";
+---
+
+<section
+  class="z-20 flex flex-col justify-between md:justify-end items-center w-full h-screen max-h-[450px] md:max-h-[610px] bg-cover bg-center bg-[url('/images/hero.png')] bg-no-repeat sticky -top-[365px] md:-top-[525px]"
+>
+  <h1
+    class="text-5xl text-white font-bold drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2"
+  >
+    REPLY ART
+  </h1>
+  <div class="flex flex-col items-center gap-5 md:flex-row md:mb-8">
+    <!-- image avatar -->
+    <img
+      src="./images/avatar.png"
+      alt="avatar"
+      class="z-0 w-24 h-24 rounded-full"
+    />
+    <p
+      class="z-0 p-5 md:p-8 text-lg md:text-2xl font-semibold text-center rounded-2xl backdrop:filter backdrop-blur-xl bg-[rgba(33,30,32,0.5)]"
+    >
+      Autos a escala
+    </p>
+  </div>
+  <div class="flex flex-row md:absolute md:right-0">
+    {
+      [Facebook, GMail, Whatsapp].map((Icon) => (
+        <a
+          href="{{ site.whatsapp }}"
+          target="_blank"
+          rel="noopener"
+          class="z-0 flex items-center justify-center p-4 rounded-full"
+        >
+          <Icon width={40} height={40} />
+        </a>
+      ))
+    }
+  </div>
+</section>
+<script>
+  const MAX_H = 450;
+  const MAX_H_MD = 610;
+
+  function getOpacity(scrollTop: number, maxH: number, minH: number) {
+    return scrollTop > maxH - minH ? 0 : 1 - scrollTop / (maxH - minH);
+  }
+
+  function getMarginTop(maxH: number, minH: number, opacity: number) {
+    return maxH - minH - opacity * (maxH - minH);
+  }
+
+  function detectScrollUp() {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    const hero = document.querySelector("section:first-child");
+    const heroHeight = hero?.clientHeight || 0;
+
+    const [title, avatar, socials] = hero?.children || [];
+
+    if (heroHeight === MAX_H) {
+      const opacity = getOpacity(scrollTop, MAX_H, (2 * MAX_H) / 3);
+      const marginTop = getMarginTop(MAX_H, 65, opacity);
+
+      avatar?.setAttribute("style", `opacity: ${opacity}`);
+      socials?.setAttribute("style", `opacity: ${opacity}`);
+      title?.setAttribute("style", `margin-top: ${marginTop}px`);
+    } else {
+      const opacityMD = getOpacity(scrollTop, MAX_H_MD, (2 * MAX_H) / 3);
+      const marginTop = getMarginTop(MAX_H_MD, 350, opacityMD);
+      avatar?.setAttribute("style", `opacity: ${opacityMD}`);
+      socials?.setAttribute("style", `opacity: 1`);
+      title?.setAttribute("style", `margin-top: ${marginTop}px`);
+    }
+  }
+
+  window.addEventListener("scroll", detectScrollUp);
+  window.addEventListener("load", detectScrollUp);
+  window.addEventListener("resize", detectScrollUp);
+</script>

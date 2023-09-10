@@ -1,0 +1,74 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "label": "Mitsubishi lancer",
+      "url": "/images/cars/mitsubishi-lancer.jpeg"
+    },
+    {
+      "id": "2",
+      "label": "Chevrolet 1946",
+      "url": "/images/cars/chevrolet-1946.jpeg"
+    },
+    {
+      "id": "3",
+      "label": "Bus bolivar",
+      "url": "/images/cars/bus-bolivar.jpeg"
+    },
+    {
+      "id": "4",
+      "label": "Maquinaria",
+      "url": "/images/cars/maquinaria.jpeg"
+    },
+    {
+      "id": "5",
+      "label": "Patrulla 110",
+      "url": "/images/cars/patrulla-110.jpeg"
+    },
+    {
+      "id": "6",
+      "label": "taiyo",
+      "url": "/images/cars/taiyo.jpeg"
+    },
+    {
+      "id": "7",
+      "label": "Minibuses",
+      "url": "/images/cars/minibuses.jpeg"
+    },
+    {
+      "id": "8",
+      "label": "jeep-cheroke",
+      "url": "/images/cars/jeep-cheroke.jpeg"
+    },
+    {
+      "id": "9",
+      "label": "mazda-cx8",
+      "url": "/images/cars/mazda-cx8.jpeg"
+    },
+    {
+      "id": "10",
+      "label": "jeep-toyota-f40",
+      "url": "/images/cars/jeep-toyota-f40.jpeg"
+    },
+    {
+      "id": "11",
+      "label": "volvo-f12",
+      "url": "/images/cars/volvo-f12.jpeg"
+    },
+    {
+      "id": "12",
+      "label": "buses-bolivar-g7",
+      "url": "/images/cars/buses-bolivar-g7.jpeg"
+    },
+    {
+      "id": "13",
+      "label": "Image 13",
+      "url": "/images/cars/bus-copacabana.jpeg"
+    },
+    {
+      "id": "14",
+      "label": "Image 14",
+      "url": "/images/cars/jeep-minibus.jpeg"
+    }
+  ]
+}

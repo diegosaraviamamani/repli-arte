@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import data from "../../data.json";
+
+export function getStaticPaths() {
+  const paths = data.images.map((image) => ({
+    params: {
+      id: image.id,
+    },
+  }));
+  return paths;
+}
+
+const { id } = Astro.params;
+const { label, url } = data.images.filter((image) => image.id === id)[0];
+---
+
+<Layout title={`${id} - ReplyArt`}>
+  <main class="min-h-screen flex items-center">
+    <section class="container mx-auto p-6 sm:px-10">
+      <img
+        title={label}
+        src={url}
+        alt={label}
+        class="object-cover rounded-3xl w-full"
+      />
+    </section>
+  </main>
+</Layout>
